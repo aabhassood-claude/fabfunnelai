@@ -1,0 +1,351 @@
+/* ───────────────────────────────────────────────
+   FabFunnel — branded design system
+   Production-fidelity tokens & components.
+   Replaces the sketchy wireframe styles.
+   ─────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Palette ─────────────────────────────────── */
+  --paper:        #FAF9F4;   /* warm background */
+  --paper-dim:    #F2F0E8;   /* secondary surface */
+  --surface:      #FFFFFF;   /* card surface */
+  --surface-2:    #F7F5EE;   /* tinted card */
+
+  --ink:          #171717;   /* primary text + buttons */
+  --ink-2:        #2A2A28;
+  --ink-mute:     #5F5E58;
+  --ink-soft:     #8B8A82;
+  --ink-faint:    #B5B3A8;
+
+  --line:         #E8E5DC;   /* card borders */
+  --line-soft:    #EFECE2;
+
+  --lime:         #C3EB42;   /* bright brand */
+  --lime-deep:    #A8D632;   /* darker mid */
+  --lime-ink:     #8FB821;   /* "FUNNEL" wordmark green */
+  --lime-soft:    #ECF7C8;   /* lime tint background */
+
+  --accent-warn:  #F2A03D;
+  --accent-err:   #E14C3A;
+
+  /* ── Type ────────────────────────────────────── */
+  --font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
+
+  /* ── Radii / Shadows ─────────────────────────── */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r:    14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --shadow-sm: 0 1px 2px rgba(23,23,23,0.04), 0 0 0 1px rgba(23,23,23,0.04);
+  --shadow:    0 4px 16px rgba(23,23,23,0.06), 0 0 0 1px var(--line);
+  --shadow-lg: 0 24px 60px rgba(23,23,23,0.10), 0 0 0 1px var(--line);
+}
+
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button { font-family: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ── Type helpers ──────────────────────────────── */
+.ff-display {
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.96;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+.ff-h1 {
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 1.04;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+.ff-h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+.ff-h3 {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.ff-h4 {
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+.ff-body {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.ff-body-lg {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.ff-micro {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.ff-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.ff-ink     { color: var(--ink); }
+.ff-mute    { color: var(--ink-mute); }
+.ff-lime    { color: var(--lime-ink); }
+.ff-soft    { color: var(--ink-soft); }
+.ff-paper   { color: var(--paper); }
+
+/* ── Wordmark ──────────────────────────────────── */
+.ff-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.ff-wordmark .funnel {
+  color: var(--lime-ink);
+  font-weight: 500;
+}
+.ff-wordmark svg { flex-shrink: 0; }
+
+/* ── Buttons ───────────────────────────────────── */
+.ff-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.ff-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(23,23,23,0.18); }
+.ff-btn:active { transform: translateY(0); box-shadow: none; }
+
+.ff-btn-lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+.ff-btn-lime:hover { box-shadow: 0 6px 24px rgba(195,235,66,0.45); }
+
+.ff-btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.ff-btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+.ff-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.ff-btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+.ff-btn-sm  { padding: 9px 16px; font-size: 14px; }
+.ff-btn-lg  { padding: 16px 28px; font-size: 16px; }
+
+/* ── Pills / Badges ────────────────────────────── */
+.ff-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.ff-pill-lime  { background: var(--lime); border-color: transparent; color: var(--ink); }
+.ff-pill-soft  { background: var(--lime-soft); border-color: transparent; color: var(--lime-ink); }
+.ff-pill-ink   { background: var(--ink); color: var(--paper); border-color: transparent; }
+.ff-pill-dot::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--lime-ink);
+}
+
+/* ── Cards & surfaces ──────────────────────────── */
+.ff-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 28px;
+}
+.ff-card-tint { background: var(--surface-2); }
+.ff-card-ink  { background: var(--ink); color: var(--paper); border-color: transparent; }
+.ff-card-ink .ff-body { color: rgba(250,249,244,0.7); }
+.ff-card-ink .ff-eyebrow { color: rgba(250,249,244,0.5); }
+
+/* ── Inputs ────────────────────────────────────── */
+.ff-field {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: inherit;
+  font-size: 15px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.ff-field::placeholder { color: var(--ink-soft); }
+.ff-field:focus { border-color: var(--ink); box-shadow: 0 0 0 4px rgba(195,235,66,0.25); }
+
+/* ── Sections ──────────────────────────────────── */
+.ff-section {
+  padding: 96px 0;
+}
+.ff-section-tight { padding: 60px 0; }
+.ff-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ── Nav ──────────────────────────────────────── */
+.ff-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250,249,244,0.85);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.ff-nav-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.ff-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.ff-nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-mute);
+  transition: color 120ms ease;
+}
+.ff-nav-links a:hover { color: var(--ink); }
+.ff-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── Highlight underline (hand-drawn vibe via SVG) ── */
+.ff-mark {
+  position: relative;
+  background: var(--lime);
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+/* ── Stat block ────────────────────────────────── */
+.ff-stat {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* ── Logo cloud (social proof) ─────────────────── */
+.ff-cloud {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 28px;
+  align-items: center;
+  opacity: 0.7;
+}
+.ff-cloud-logo {
+  height: 34px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* ── Footer ────────────────────────────────────── */
+.ff-footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 80px 0 32px;
+}
+.ff-footer a { color: rgba(250,249,244,0.6); }
+.ff-footer a:hover { color: var(--paper); }
+
+/* ── Utilities ─────────────────────────────────── */
+.ff-row { display: flex; align-items: center; }
+.ff-grid { display: grid; }
+.ff-gap-2 { gap: 8px; }
+.ff-gap-3 { gap: 12px; }
+.ff-gap-4 { gap: 16px; }
+.ff-gap-6 { gap: 24px; }
+.ff-gap-8 { gap: 32px; }
+.ff-gap-12 { gap: 48px; }
+
+.ff-mt-2  { margin-top: 8px; }
+.ff-mt-3  { margin-top: 12px; }
+.ff-mt-4  { margin-top: 16px; }
+.ff-mt-6  { margin-top: 24px; }
+.ff-mt-8  { margin-top: 32px; }
+.ff-mt-12 { margin-top: 48px; }
+.ff-mt-16 { margin-top: 64px; }
